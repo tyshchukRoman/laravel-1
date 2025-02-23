@@ -14,17 +14,9 @@
         </li>
     </ul>
 
-    <div>
-        <p>
-            {{ $task->description }}
-        </p>
-    </div>
+    <p><b>{{ $task->description }}</b></p>
 
     @if ($task->long_description)
-        <div>
-            <p>
-                {{ $task->long_description }}
-            </p>
-        </div>
+        <p>{{ $task->long_description }}</p>
     @endif
 @endsection
