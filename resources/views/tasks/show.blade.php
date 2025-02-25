@@ -19,4 +19,11 @@
     @if ($task->long_description)
         <p>{{ $task->long_description }}</p>
     @endif
+
+    <form method="POST" action="{{ route('tasks.destroy', ['task' => $task]) }}">
+        @csrf
+        @method('DELETE')
+
+        <button type="submit">Delete</button>
+    </form>
 @endsection
