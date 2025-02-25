@@ -40,14 +40,14 @@ Route::fallback(function () {
  */
 Route::get('/tasks', function () {
     return view('tasks.index', [
-        'tasks' => Task::latest()->get()
+        'tasks' => Task::latest()->paginate(10)
     ]);
 })->name('tasks.index');
 
 /*
  * Create Task
  */
-Route::view('/tasks/create', 'tasks.create')->name('tasks.create');
+Route::view('/tasks/create', 'tasks.create')->name('tasks.store');
 
 /*
  * Edit Single Task
