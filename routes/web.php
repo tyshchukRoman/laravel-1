@@ -47,7 +47,7 @@ Route::get('/tasks', function () {
 /*
  * Create Task
  */
-Route::view('/tasks/create', 'tasks.create')->name('tasks.store');
+Route::view('/tasks/create', 'tasks.create')->name('tasks.create');
 
 /*
  * Edit Single Task
@@ -100,3 +100,14 @@ Route::delete('/tasks/{task}', function (Task $task) {
         ->route('tasks.index')
         ->with('success', 'Task was deleted');
 })->name('tasks.destroy');
+
+/*
+ * Toggle Task State
+ */
+Route::put('/tasks/{task}/toggle-complete', function (Task $task) {
+    $task->toggleComplete();
+
+    return redirect()
+        ->back()
+        ->with('success', 'Task updated successfully');
+})->name('tasks.toggle-complete');

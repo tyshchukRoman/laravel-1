@@ -20,4 +20,10 @@ class Task extends Model
         'description',
         'long_description',
     ];
+
+    function toggleComplete()
+    {
+        $this->completed = !$this->completed;
+        $this->save();
+    }
 }
