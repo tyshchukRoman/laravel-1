@@ -3,6 +3,7 @@
     <head>
         <title>@yield('title') - Task List App</title>
         <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     </head>
 
     {{-- blade-formatter-disable --}}
@@ -14,6 +15,10 @@
         .link {
             @apply font-medium text-gray-700 underline decoration-pink-500
         }
+
+        .flash-message {
+            @apply relative mb-10 rounded border border-green-400 bg-green-100 px-4 py-3 text-lg text-green-700
+        }
     </style>
     {{-- blade-formatter-enable --}}
 
@@ -21,8 +26,14 @@
         <h1 class="mb-4 text-2xl">@yield('title')</h1>
 
         <main class="main">
+
             @if (session()->has('success'))
-                {{ session('success') }}
+                <div x-data="{ isOpen: true }">
+                    <div class="flash-message" role="alert" x-show="isOpen">
+                        <strong>Success</strong> {{ session('success') }}
+                        <button class="absolute top-2 right-2" @click="isOpen = false">X</button>
+                    </div>
+                </div>
             @endif
 
             @yield('content')
